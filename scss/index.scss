@@ -6,6 +6,7 @@ $back_main: #FDFDFB;
 
 @mixin hover() {
   transition: opacity .4s;
+  cursor: pointer;
 
   &:hover {
     opacity: .6;
@@ -27,25 +28,46 @@ $back_main: #FDFDFB;
   font-weight: $weight;
 }
 
+@mixin line ($width: 50px){
+  align-self: center;
+  width: $width;
+  border-bottom: 1px solid #8B8371;
+  margin-bottom: 4px;
+}
+
+
+.button {
+  width: 205px;
+  height: 64px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @include font(12px, 14px, 500);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #fff;
+  @include hover();
+}
+
+.line {
+  @include line();
+}
+
 .page {
-  max-width: 1920px;
+  max-width: 1366px;
   margin: 0 auto;
   font-family: 'Roboto', sans-serif;
 }
 
 .header {
-  padding: 30px 100/1920*100vw;
+  padding: 30px 100/1366*100vw;
   background-color: $back_main;
   color: #555248;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-
-main {
-
-}
-
 
 .logo {
   display: flex;
@@ -63,7 +85,7 @@ main {
 
 .menu__items {
   @include list();
-  gap: 65/1920*100vw;
+  gap: 65/1366*100vw;
   @include font(14px, 16px);
 
   .menu__link {
@@ -77,7 +99,7 @@ main {
 
   .actions__items {
     @include list();
-    gap: 23/1920*100vw;
+    gap: 23/1366*100vw;
 
     .action__item {
       position: relative;
@@ -116,19 +138,51 @@ main {
   padding: 0 200px 0 185px;
 
   .collection__content{
+    position: relative;
+    z-index: 4;
     display: flex;
     flex-direction: column;
-    width: 350px;
+     min-width: 50%;
+
     .collection__title {
+      margin: 0;
+      margin-bottom: 16px;
       font-family: 'Playfair Display';
       color: #1B1A17;
       @include font(45px, 60px);
+    }
+
+    .collection__subtitle {
+      margin: 0;
+      font-family: 'Playfair Display';
+      color: #1B1A17;
+      @include font(30px, 40px);
+    }
+
+    .collection__description {
+      margin: 0;
+      margin: 39px 0 64px;
+      width: 258/1366*100vw;
+      color: rgba(27, 26, 23, 0.82);
+      @include font(14px, 21px, 300);
+    }
+
+  .button {
+    background-color: #444240;
+  }
+
+    .line {
+      align-self: flex-start;
+      position: absolute;
+      left: -14%;
+      top: 10%;
     }
   }
 
   .collection__half-circle {
     position: relative;
-    width: 496px;
+    min-width: 496px;
+    right: 20%;
     height: 944px;
     border-radius: 100% 0 0 100% / 50% 0 0 50%;
     background: linear-gradient(180deg, rgba(234, 227, 212, 0) 0%, #EAE3D4 100%);
@@ -145,27 +199,43 @@ main {
       .price__text {
         margin: 0;
         margin-right: 8px;
+        
       }
 
-      .line{
-        align-self: center;
-        width: 50px;
-        border-bottom: 1px solid #8B8371;
+      .collection__line{
+        @include line();
         margin-left: 15px;
-        margin-bottom: 4px;
       }
     }
+    
   }
   .collection__watch {
     position: relative;
-    left: -300px;
-    overflow: visible;
+    right: 53%;
+    bottom: -6px;
     display: block;
-    width: 502px;
+    min-width: 502px;
     height: 768px;
     background-size: cover;
     background-repeat: no-repeat;
     background-image: url('../vendor/images/watch_main.png');
+    .diameter{
+      position: absolute;
+      display: flex;
+      align-items: baseline;
+      right: -18%;
+      bottom: 14%;
+      font-family: 'Prata', serif;
+      .diameter__text{
+          margin: 0;
+         
+      }
+      .diameter__line{
+        @include line();
+        margin-right: 15px;
+      }
+    }
 
   }
 }
+
